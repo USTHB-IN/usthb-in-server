@@ -6,11 +6,19 @@ import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
 import { errorMiddleware } from "./middlewares/error.middleware";
+import { v2 as cloudinary } from "cloudinary";
 
 import routes from "./routes";
 
 // Set up server
 const app: Express = express();
+
+// Setup Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // Middlewares
 app.use(cors());
