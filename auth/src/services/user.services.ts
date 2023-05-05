@@ -41,12 +41,8 @@ export class UserService {
         throw new HttpError(409, "Email must end with usthb.dz");
 
       // Hash the password
-      const hashedPassword = await bcrypt.hash(
-        user.password,
-        process.env.BCRYPT_SALT_ROUNDS
-          ? parseInt(process.env.BCRYPT_SALT_ROUNDS)
-          : 20
-      );
+      const salt = bcrypt.genSaltSync(10);
+      const hashedPassword = bcrypt.hashSync(user.password, salt);
 
       const userSection: Types.ObjectId[] = [];
       const userGroups: Types.ObjectId[] = [];

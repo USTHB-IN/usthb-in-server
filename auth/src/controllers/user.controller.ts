@@ -33,6 +33,34 @@ export async function getUserById(
   }
 }
 
+export async function getUserByEmail(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const email = req.params.email;
+    const user = await UserService.getUserByEmail(email);
+    res.json(user);
+  } catch (error: any) {
+    next(error);
+  }
+}
+
+export async function getUserByMatricule(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const matricule = req.params.matricule;
+    const user = await UserService.getUserByMatricule(matricule);
+    res.json(user);
+  } catch (error: any) {
+    next(error);
+  }
+}
+
 export async function getAllUsers(
   req: Request,
   res: Response,
@@ -88,6 +116,30 @@ export async function getAllUsersByGroupId(
   try {
     const id = req.params.id;
     const users = await UserService.getAllUsersByGroupId(id);
+    res.status(200).json(users);
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function getAllUsersByGroup(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const name: string = req.query.name as string;
+    const type: string = req.query.type as string;
+    const nameSection: string = req.query.nameSection as string;
+    const academicYear: string = req.query.academicYear as string;
+    const nameSpecialite: string = req.query.nameSpecialite as string;
+    const users = await UserService.getAllUsersByGroup({
+      name: name,
+      type: type,
+      nameSection: nameSection,
+      academicYear: academicYear,
+      nameSpecialite: nameSpecialite,
+    });
     res.status(200).json(users);
   } catch (error) {
     next(error);

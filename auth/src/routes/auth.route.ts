@@ -8,7 +8,7 @@ const authRouter: Router = express.Router();
 authRouter.post("/register", authController.signup);
 
 // POST /api/auth/login
-authRouter.get("/login", authController.login);
+authRouter.post("/login", authController.login);
 
 // PUT /api/auth/change-password
 authRouter.put("/changepassword", authController.changePassword);

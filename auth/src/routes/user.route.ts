@@ -9,6 +9,12 @@ router.post("/", userController.createUser);
 // Get a user by ID
 router.get("/id/:id", userController.getUserById);
 
+// Get a user by ID
+router.get("/email/:email", userController.getUserByEmail);
+
+// Get a user by Matricule
+router.get("/matricule/:matricule", userController.getUserByMatricule);
+
 // Get all users
 router.get("/", userController.getAllUsers);
 
@@ -21,14 +27,17 @@ router.get("/section", userController.getAllUsersBySection);
 // Get all users by group ID
 router.get("/group/:id", userController.getAllUsersByGroupId);
 
+// Get all users by group
+router.get("/group", userController.getAllUsersByGroup);
+
 // Update a user by ID
-router.put("/id/:id", userController.updateUserById);
+router.patch("/id/:id", userController.updateUserById);
 
 // Update a user by email
-router.put("/email/:email", userController.updateUserByEmail);
+router.patch("/email/:email", userController.updateUserByEmail);
 
 // Update a user by matricule
-router.put("/matricule/:matricule", userController.updateUserByMatricule);
+router.patch("/matricule/:matricule", userController.updateUserByMatricule);
 
 // Delete a user by ID
 router.delete("/id/:id", userController.deleteUserById);

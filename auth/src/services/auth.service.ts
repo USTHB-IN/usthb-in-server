@@ -37,21 +37,23 @@ const authService = {
       }
 
       // Compare the password
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = bcrypt.compareSync(password, user.password);
+      console.log(isMatch);
+
       if (!isMatch) {
         throw new HttpError(401, "Invalid email or password");
       }
 
       // Generate a JWT token
       var role: string = "";
-      switch (user.email) {
-        case "@admin.usthb.dz":
+      switch (email.split("@")[1]) {
+        case "admin.usthb.dz":
           role = "admin";
           break;
-        case "@etu.usthb.dz":
+        case "etu.usthb.dz":
           role = "student";
           break;
-        case "@usthb.dz":
+        case "usthb.dz":
           role = "teacher";
         default:
           throw new HttpError(401, "Invalid email or password");
