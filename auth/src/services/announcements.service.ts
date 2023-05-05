@@ -1,5 +1,5 @@
 import Section from "../models/section.model";
-import { HttpError } from "middlewares/error.middleware";
+import { HttpError } from "../middlewares/error.middleware";
 import Announcement, {
   IAnnouncement,
   AnnouncementModel,

@@ -1,16 +1,19 @@
-import { HttpError } from "middlewares/error.middleware";
+import { UploadedFile } from "express-fileupload";
+import { HttpError } from "../middlewares/error.middleware";
 import Opportunity, {
   IOpportunity,
   OpportunityDocument,
 } from "../models/opportunities.model";
 
-import { uploadImage } from "utils/uploadImage";
+import { uploadImage } from "../utils/uploadImage";
 
 export class OpportunityService {
   static async createOpportunity(
     opportunity: IOpportunity
   ): Promise<OpportunityDocument> {
     try {
+      console.log(opportunity);
+
       const image = uploadImage({
         image: opportunity.image,
         folder: "opportunities",

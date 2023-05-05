@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { OpportunityService } from "../services/opportunities.service";
+import { UploadedFile } from "express-fileupload";
 
 export async function createOpportunity(
   req: Request,
@@ -7,11 +8,17 @@ export async function createOpportunity(
   next: NextFunction
 ): Promise<void> {
   try {
-    const opportunity = await OpportunityService.createOpportunity(req.body);
-    res.status(201).json({
-      status: "success",
-      data: opportunity,
+    const { title, description, type, image, link, club, clubImage } = req.body;
+    const newOpportunity = await OpportunityService.createOpportunity({
+      title,
+      description,
+      type,
+      image,
+      link,
+      club,
+      clubImage,
     });
+    res.status(201).json(newOpportunity);
   } catch (error: any) {
     next(error);
   }

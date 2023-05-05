@@ -21,4 +21,7 @@ const AnnouncementSchema: Schema = new Schema<AnnouncementModel>({
   date: { type: Date, required: true },
 });
 
-export default mongoose.model<AnnouncementModel>("Group", AnnouncementSchema);
+export default mongoose.model<AnnouncementModel>(
+  "Announcement",
+  AnnouncementSchema
+);

@@ -7,6 +7,7 @@ import morgan from "morgan";
 import helmet from "helmet";
 import { errorMiddleware } from "./middlewares/error.middleware";
 import { v2 as cloudinary } from "cloudinary";
+import file from "express-fileupload";
 
 import routes from "./routes";
 
@@ -14,11 +15,7 @@ import routes from "./routes";
 const app: Express = express();
 
 // Setup Cloudinary
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+cloudinary.config(process.env.CLOUDINARY_URL!);
 
 // Middlewares
 app.use(cors());
@@ -26,6 +23,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
+app.use(file());
 // Error handling
 app.use(errorMiddleware);
 
