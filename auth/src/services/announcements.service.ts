@@ -1,3 +1,4 @@
+import { getAllAnnouncements } from "./../controllers/announcements.controller";
 import Section from "../models/section.model";
 import { HttpError } from "../middlewares/error.middleware";
 import Announcement, {
@@ -25,9 +26,7 @@ export class AnnouncementService {
     }
   }
 
-  static async getAnnouncementById(
-    id: string
-  ): Promise<AnnouncementModel | null> {
+  static async getAnnouncementById(id: string): Promise<AnnouncementModel> {
     try {
       const existingAnnouncements = await Announcement.findById(id).populate(
         "section"
@@ -53,7 +52,7 @@ export class AnnouncementService {
   static async updateAnnouncement(
     id: string,
     announcement: IAnnouncement
-  ): Promise<AnnouncementModel | null> {
+  ): Promise<AnnouncementModel> {
     try {
       const updatedAnnouncement = await Announcement.findByIdAndUpdate(
         id,
@@ -74,9 +73,7 @@ export class AnnouncementService {
     }
   }
 
-  static async deleteAnnouncement(
-    id: string
-  ): Promise<AnnouncementModel | null> {
+  static async deleteAnnouncement(id: string): Promise<AnnouncementModel> {
     try {
       const deletedAnnouncements = await Announcement.findByIdAndDelete(id);
       if (!deletedAnnouncements)

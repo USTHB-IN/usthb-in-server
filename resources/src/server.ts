@@ -1,6 +1,6 @@
-import User from "./models/user.model";
 require("dotenv").config();
 import express, { Express } from "express";
+import { v2 as cloudinary } from "cloudinary";
 import mongoose, { ConnectOptions } from "mongoose";
 import cors from "cors";
 import morgan from "morgan";
@@ -9,8 +9,11 @@ import { errorMiddleware } from "./middlewares/error.middleware";
 
 import routes from "./routes";
 
-// Set up server
+// Setup server
 const app: Express = express();
+
+// Setup Cloudinary
+cloudinary.config(process.env.CLOUDINARY_URL!);
 
 // Middlewares
 app.use(cors());

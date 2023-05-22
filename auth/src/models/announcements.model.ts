@@ -17,7 +17,7 @@ export interface AnnouncementModel extends Document {
 const AnnouncementSchema: Schema = new Schema<AnnouncementModel>({
   title: { type: String, required: true },
   description: { type: String, required: true },
-  section: { type: Types.ObjectId, required: true },
+  section: { type: Types.ObjectId, ref: "Section", required: true },
   date: { type: Date, required: true },
 });
 

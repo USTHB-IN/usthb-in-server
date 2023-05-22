@@ -7,7 +7,6 @@ import morgan from "morgan";
 import helmet from "helmet";
 import { errorMiddleware } from "./middlewares/error.middleware";
 import { v2 as cloudinary } from "cloudinary";
-import file from "express-fileupload";
 
 import routes from "./routes";
 
@@ -23,7 +22,6 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
-app.use(file());
 // Error handling
 app.use(errorMiddleware);
 
@@ -40,16 +38,16 @@ const options: MongooseConnectOptions = {
   useUnifiedTopology: true,
 };
 // Database
-mongoose
-  .connect(process.env.MONGODB_URI!, options)
-  .then(async () => {
-    console.log("MongoDB connected");
-    // Start server
-    const port = process.env.PORT || 3000;
-    app.listen(port, () => {
-      console.log(`Server running on port ${port}`);
-    });
-  })
-  .catch((err) => console.log(err));
+// mongoose
+//   .connect(process.env.MONGODB_URI!, options)
+//   .then(async () => {
+//     console.log("MongoDB connected");
 
+//   })
+//   .catch((err) => console.log(err));
+// Start server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
 export { app };

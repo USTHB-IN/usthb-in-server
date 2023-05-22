@@ -24,12 +24,14 @@
   "license": "ISC",
   "homepage": "https://github.com/bloopdex/nodejs-typescript-project-setup#readme",
   "_moduleAliases": {
-    "container": "./build/src/container",
-    "app": "./build/src/app",
-    "core": "./build/src/core",
-    "domain": "./build/src/domain",
-    "infra": "./build/src/infra",
-    "interfaces": "./build/src/interfaces"
+    "@": "src",
+    "@config": "src/config",
+    "@controllers": "src/controllers",
+    "@middlewares": "src/middlewares",
+    "@models": "src/models",
+    "@routes": "src/routes",
+    "@services": "src/services",
+    "@utils": "src/utils"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",

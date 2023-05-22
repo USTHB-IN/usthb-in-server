@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { OpportunityService } from "../services/opportunities.service";
+import { HttpError } from "../middlewares/error.middleware";
 import { UploadedFile } from "express-fileupload";
+import { Multer } from "multer";
 
 export async function createOpportunity(
   req: Request,
@@ -8,12 +10,25 @@ export async function createOpportunity(
   next: NextFunction
 ): Promise<void> {
   try {
-    const { title, description, type, image, link, club, clubImage } = req.body;
+    if (!req.files) throw new HttpError(400, "Images are required");
+
+    const imageFiles = req.files[0] as unknown as Express.Multer.File;
+    const clubImageFiles: Express.Multer.File = req
+      .files[1] as unknown as Express.Multer.File;
+
+    console.log(imageFiles);
+    console.log(clubImageFiles);
+
+    // Access the path of the first file
+    const image = imageFiles.path;
+    const clubImage = clubImageFiles.path;
+
+    const { title, description, type, link, club } = req.body;
     const newOpportunity = await OpportunityService.createOpportunity({
       title,
       description,
       type,
-      image,
+      image: image,
       link,
       club,
       clubImage,

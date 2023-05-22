@@ -13,7 +13,7 @@ export interface IGroup {
 export interface GroupeModel extends Document {
   name: string;
   type: GroupType;
-  idSection: typeof mongoose.Types.ObjectId;
+  idSection: mongoose.Types.ObjectId;
 }
 
 const GroupSchema: Schema = new Schema<GroupeModel>({
@@ -24,7 +24,7 @@ const GroupSchema: Schema = new Schema<GroupeModel>({
     required: true,
   },
   idSection: {
-    type: mongoose.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "Section",
     required: true,
   },
