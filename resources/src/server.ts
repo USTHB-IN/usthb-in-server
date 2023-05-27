@@ -8,12 +8,10 @@ import helmet from "helmet";
 import { errorMiddleware } from "./middlewares/error.middleware";
 
 import routes from "./routes";
+import path from "path";
 
 // Setup server
 const app: Express = express();
-
-// Setup Cloudinary
-cloudinary.config(process.env.CLOUDINARY_URL!);
 
 // Middlewares
 app.use(cors());
@@ -27,6 +25,19 @@ app.use(errorMiddleware);
 // Routes
 app.use("/api/", routes);
 
+// Route for file retrieval
+app.get("/api/files/:filename", (req, res) => {
+  const filename = req.params.filename;
+  const filePath = path.join(__dirname, "uploads", filename);
+  console.log(filePath);
+
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      res.status(404).send("File not found.");
+    }
+  });
+});
+
 interface MongooseConnectOptions extends ConnectOptions {
   useNewUrlParser: boolean;
   useUnifiedTopology: boolean;
@@ -36,7 +47,7 @@ const options: MongooseConnectOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
-// Database
+// Database connection
 mongoose
   .connect(process.env.MONGODB_URI!, options)
   .then(async () => {

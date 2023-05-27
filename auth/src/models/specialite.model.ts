@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, Document, Types } from "mongoose";
 
 export interface ISpecialite {
   name: string;
@@ -9,7 +9,7 @@ export interface ISpecialite {
 export interface SpecialiteModel extends Document {
   name: string;
   abbreviation: string;
-  idFiliere: typeof mongoose.Types.ObjectId;
+  idFiliere: Types.ObjectId;
 }
 
 const SpecialiteSchema: Schema = new Schema<SpecialiteModel>({
@@ -24,7 +24,7 @@ const SpecialiteSchema: Schema = new Schema<SpecialiteModel>({
     unique: true,
   },
   idFiliere: {
-    type: mongoose.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "Filiere",
     require: true,
   },

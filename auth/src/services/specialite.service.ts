@@ -81,7 +81,6 @@ export class SpecialiteService {
     }
   }
 
-
   static async getSpecialiteByAbbreviation(
     abbreviation: string
   ): Promise<SpecialiteModel> {
