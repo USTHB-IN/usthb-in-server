@@ -16,6 +16,7 @@ router.get(
   "/filiere/:filiereName",
   specialiteController.getSpecialitesByFiliereName
 );
+router.get("filiere/id/:id", specialiteController.getSpecialitesByFiliereId);
 router.patch("/:id", specialiteController.updateSpecialiteById);
 router.patch("/name/:name", specialiteController.updateSpecialiteByName);
 router.patch(

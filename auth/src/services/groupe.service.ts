@@ -166,6 +166,15 @@ export class GroupService {
     }
   }
 
+  static async getGroupsBySectionId(sectionId: string): Promise<GroupeModel[]> {
+    try {
+      const groups = await Groupe.find({ idSection: sectionId });
+      return groups;
+    } catch (error: any) {
+      throw new HttpError(500, error.message);
+    }
+  }
+
   static async updateGroupById(
     id: string,
     group: UpdateGroupParams

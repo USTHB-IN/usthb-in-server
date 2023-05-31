@@ -16,6 +16,9 @@ router.get(
   SectionController.getAllSectionBySpecialite
 );
 
+// Get all sections by specialite id
+router.get("/specialite/id/:id", SectionController.getAllSectionBySpecialiteId);
+
 // Get section by id
 router.get("/id/:id", SectionController.getSectionById);
 

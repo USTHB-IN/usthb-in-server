@@ -11,6 +11,6 @@ authRouter.post("/register", authController.signup);
 authRouter.post("/login", authController.login);
 
 // PUT /api/auth/change-password
-authRouter.put("/changepassword", authController.changePassword);
+// authRouter.put("/changepassword", authController.changePassword);
 
 export default authRouter;

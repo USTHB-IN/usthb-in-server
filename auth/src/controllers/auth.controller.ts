@@ -30,21 +30,21 @@ export async function signup(
   }
 }
 
-export async function changePassword(
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> {
-  const { oldPassword, newPassword } = req.body;
-  if (!req.user) {
-    res.status(401).json({ message: "User not authenticated." });
-  }
+// export async function changePassword(
+//   req: Request,
+//   res: Response,
+//   next: NextFunction
+// ): Promise<void> {
+//   const { oldPassword, newPassword } = req.body;
+//   if (!req.user) {
+//     res.status(401).json({ message: "User not authenticated." });
+//   }
 
-  const id = req.user?.id as string;
-  try {
-    await authService.changePassword({ id, oldPassword, newPassword });
-    res.status(204).send();
-  } catch (error: any) {
-    next(error);
-  }
-}
+//   const id = req.user?.id as string;
+//   try {
+//     await authService.changePassword({ id, oldPassword, newPassword });
+//     res.status(204).send();
+//   } catch (error: any) {
+//     next(error);
+//   }
+// }

@@ -56,6 +56,19 @@ export const getAllGroupsBySection = async (
   }
 };
 
+export const getGroupsBySectionId = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+    const groups = await GroupService.getGroupsBySectionId(id);
+    res.status(200).json(groups);
+  } catch (error: any) {
+    next(error);
+  }
+};
 export const getGroupById = async (
   req: Request,
   res: Response,

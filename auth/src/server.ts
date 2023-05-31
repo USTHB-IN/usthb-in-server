@@ -38,16 +38,16 @@ const options: MongooseConnectOptions = {
   useUnifiedTopology: true,
 };
 // Database
-// mongoose
-//   .connect(process.env.MONGODB_URI!, options)
-//   .then(async () => {
-//     console.log("MongoDB connected");
-
-//   })
-//   .catch((err) => console.log(err));
+mongoose
+  .connect(process.env.MONGODB_URI!, options)
+  .then(async () => {
+    console.log("MongoDB connected");
+    const port = process.env.PORT || 3000;
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  })
+  .catch((err) => console.log(err));
 // Start server
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+
 export { app };

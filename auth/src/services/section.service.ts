@@ -91,6 +91,17 @@ export class SectionService {
     }
   }
 
+  static async getAllSectionsBySpecialiteId(
+    specialiteId: string
+  ): Promise<SectionModel[]> {
+    try {
+      const section = await Section.find({ idSpecialite: specialiteId });
+      return section;
+    } catch (error: any) {
+      throw new HttpError(500, error.message);
+    }
+  }
+
   static async getSectionById(id: string): Promise<SectionModel> {
     try {
       const section = await Section.findById(id);

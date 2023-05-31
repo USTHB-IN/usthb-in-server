@@ -85,6 +85,21 @@ export const getSpecialitesByFiliereName = async (
   }
 };
 
+export const getSpecialitesByFiliereId = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const specialites = await SpecialiteService.getSpecialitesByFiliereName(
+      req.params.filiereId
+    );
+    res.json(specialites);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const updateSpecialiteById = async (
   req: Request,
   res: Response,

@@ -38,12 +38,12 @@ const RessourceSchema = new Schema<RessourceModel>({
   },
   module: {
     type: Schema.Types.ObjectId,
-    ref: "module",
+    ref: "Module",
     required: true,
   },
   file: {
     type: Schema.Types.ObjectId,
-    ref: "file",
+    ref: "File",
     required: true,
   },
 });

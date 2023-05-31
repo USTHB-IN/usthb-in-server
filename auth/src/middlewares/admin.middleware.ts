@@ -14,7 +14,7 @@ const adminOnlyMiddleware = (req: Request, res: Response, next: NextFunction) =>
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET!) as { id: string; role: string };
     const userRole = decodedToken.role;
 
-    // Check if the user is a teacher
+    // Check if the user is an admin
     if (userRole !== 'admin') {
       return next(new HttpError(403, 'Access forbidden'));
     }

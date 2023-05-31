@@ -112,6 +112,16 @@ export class SpecialiteService {
       throw new HttpError(500, error.message);
     }
   }
+  static async getSpecialitesByFiliereId(
+    filiereId: string
+  ): Promise<SpecialiteModel[]> {
+    try {
+      const filiere = await Specialite.find({ idFiliere: filiereId });
+      return filiere;
+    } catch (error: any) {
+      throw new HttpError(500, error.message);
+    }
+  }
 
   static async updateSpecialiteById(
     id: string,

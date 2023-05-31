@@ -47,6 +47,21 @@ export const getAllSectionBySpecialite = async (
   }
 };
 
+export const getAllSectionBySpecialiteId = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const sections = await SectionService.getAllSectionsBySpecialiteId(
+      req.params.id
+    );
+    res.json(sections);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const getSectionById = async (
   req: Request,
   res: Response,

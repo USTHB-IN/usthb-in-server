@@ -7,6 +7,7 @@ const router = express.Router();
 router.post("/", adminOnlyMiddleware, GroupController.createGroup);
 router.get("/", GroupController.getAllGroups);
 router.get("/section", GroupController.getAllGroupsBySection);
+router.get("/section/id/:id", GroupController.getGroupsBySectionId);
 router.get("/id/:id", GroupController.getGroupById);
 router.get("/search", GroupController.getGroupByNameAndSection);
 router.patch("/id/:id", GroupController.updateGroupById);
